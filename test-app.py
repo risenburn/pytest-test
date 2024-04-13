@@ -1,21 +1,22 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
 from time import sleep
 
 @pytest.fixture(scope="session")
 def browser():
-    chrome_options = webdriver.ChromeOptions()
+    options = ChromeOptions()
+    capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "123.0",
+        "selenoid:options": {
+            "name": "Chrome Instance"
+        }
+    }
     browser = webdriver.Remote(
-           command_executor='http://localhost:4444/wd/hub',
-           desired_capabilities={'browserName': 'chrome',
-                                  'version': '123.0'},
-           options=chrome_options)
- 
-    browser.maximize_window()
- 
-    # This is where you yield the browser instance, allowing it to be used in tests
+        command_executor=f"http://0.0.0.0:4444/wd/hub",
+        desired_capabilities=capabilities, options=options)
     yield browser
     # Close the browser after each test function completes, or at the end of a session if scope was set to "session"
     browser.quit()
@@ -28,4 +29,4 @@ def test_google(browser):
     pageSource = browser.page_source
     gateway = "Our third decade of climate action"
     if not gateway in pageSource:
-        pytest.fail( "Google Changed their Webpage")
+        pytest.fail("Google Changed their Webpage")
