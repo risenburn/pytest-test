@@ -1,7 +1,7 @@
 FROM python:3.12
 
-COPY requirements.txt .
+COPY pytest-test/requirements.txt .
 
-RUN pip install -r pytest-test/requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
