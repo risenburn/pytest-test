@@ -15,7 +15,7 @@ def browser():
         }
     }
     browser = webdriver.Remote(
-        command_executor=f"http://host.docker.internal:4444/wd/hub",
+        command_executor=f"http://localhost:4444/wd/hub",
         desired_capabilities=capabilities, options=options)
     yield browser
     # Close the browser after each test function completes, or at the end of a session if scope was set to "session"
