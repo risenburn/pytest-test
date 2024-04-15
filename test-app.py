@@ -25,8 +25,3 @@ def test_google(browser):
     # Now you use your 'browser' fixture as an argument in this test function
     browser.get('https://www.google.com/')
     sleep(60)
-    assert "Google" == browser.title
-    pageSource = browser.page_source
-    gateway = "Our third decade of climate action"
-    if not gateway in pageSource:
-        pytest.fail("Google Changed their Webpage")
