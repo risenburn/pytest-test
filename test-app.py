@@ -24,4 +24,4 @@ def browser():
 def test_google(browser):  
     # Now you use your 'browser' fixture as an argument in this test function
     browser.get('https://www.google.com/')
-    sleep(60)
+    sleep(1)
