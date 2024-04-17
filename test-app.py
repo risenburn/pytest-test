@@ -23,5 +23,5 @@ def browser():
 
 def test_google(browser):  
     # Now you use your 'browser' fixture as an argument in this test function
-    browser.get('http://selenoid:80')
+    browser.get('http://172.20.0.5:80')
     sleep(10)
